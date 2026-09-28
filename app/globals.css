@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f7f5ef;
+  --foreground: #1b2a22;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "tnum" 0;
+}
+
+/* ── Ambient atmosphere: layered radial tints on paper ─────── */
+.atmosphere {
+  background:
+    radial-gradient(52rem 30rem at 12% -8%, rgba(158, 191, 168, 0.34), transparent 60%),
+    radial-gradient(44rem 26rem at 96% 4%, rgba(211, 176, 113, 0.22), transparent 62%),
+    radial-gradient(50rem 34rem at 50% 108%, rgba(49, 82, 65, 0.10), transparent 64%);
+}
+
+/* Subtle paper grain for hero surfaces */
+.grain {
+  background-image: radial-gradient(rgba(27, 42, 34, 0.045) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* ── Deep gradient surface (hero cards, primary CTA) ───────── */
+.surface-deep {
+  background:
+    radial-gradient(120% 130% at 12% 8%, rgba(110, 156, 129, 0.55), transparent 55%),
+    radial-gradient(120% 140% at 92% 96%, rgba(38, 63, 52, 0.9), transparent 60%),
+    linear-gradient(150deg, #315241 0%, #263f34 58%, #1b2a22 100%);
+}
+
+.surface-gold {
+  background:
+    radial-gradient(120% 130% at 88% 6%, rgba(244, 226, 189, 0.55), transparent 55%),
+    linear-gradient(150deg, #c49a58 0%, #a87f42 100%);
+}
+
+/* ── Floating glass bottom nav ─────────────────────────────── */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+}
+
+/* ── Gradient text for display emphasis ────────────────────── */
+.text-vital {
+  background: linear-gradient(105deg, #4e7d63 0%, #315241 55%, #86642f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Prose-ish rendering of AI answers ─────────────────────── */
+.ai-prose strong {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #3d6650;
+}
+.ai-prose {
+  white-space: pre-wrap;
+  line-height: 1.65;
+}
+
+/* Thin elegant scrollbar for horizontal rails */
+.rail::-webkit-scrollbar {
+  display: none;
+}
+.rail {
+  scrollbar-width: none;
+}
+
+/* Tabular numerals for stats and counters */
+.tnum {
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Staggered load reveals (guarded for reduced motion) */
+.reveal {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .reveal-1 { animation-delay: 0.05s; }
+  .reveal-2 { animation-delay: 0.14s; }
+  .reveal-3 { animation-delay: 0.23s; }
+  .reveal-4 { animation-delay: 0.34s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    animation: none !important;
+  }
+  .animate-float-slow {
+    animation: none !important;
+  }
+}
+
+/* Safe area for the floating nav on notched devices */
+.nav-safe {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 0.75rem);
+}
+
+@media print {
+  .no-print {
+    display: none;
+  }
+}
